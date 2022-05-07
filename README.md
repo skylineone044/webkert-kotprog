@@ -1,4 +1,28 @@
 # SkylineForms
+Ha a következő hiba lép fel:
+
+```
+Error: node_modules/@firebase/auth/dist/auth-public.d.ts:3137:22 - error TS2304: Cannot find name 'PhoneOrOauthTokenResponse'.
+
+3137     _tokenResponse?: PhoneOrOauthTokenResponse;
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@firebase/auth/dist/auth-public.d.ts:3429:11 - error TS2304: Cannot find name 'UserInternal'.
+
+3429     user: UserInternal;
+               ~~~~~~~~~~~~
+
+
+
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✖ Failed to compile.
+```
+
+Akor a `node_modules/@firebase/auth/dist/auth-public.d.ts` filet cseréld ki a `hotfix/auth-public.d.ts` filera
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
 
