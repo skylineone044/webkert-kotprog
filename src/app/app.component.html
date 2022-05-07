@@ -9,15 +9,15 @@
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-      <div>GALLERY-APP</div>
+      <div class="menu-title">skyline's untitled forms app</div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
           <li *ngIf="!(loggedInUser)"><a routerLink="/login">Login</a></li>
-          <li *ngIf="loggedInUser"><a routerLink="/login" (click)="logout()">Logout</a></li>
-          <li><a routerLink="/signup">Register</a></li>
+          <li *ngIf="!loggedInUser"><a routerLink="/signup">Register</a></li>
           <li><a routerLink="/main">Main</a></li>
           <li><a routerLink="/gallery">Gallery</a></li>
           <li><a routerLink="/contact">Contact</a></li>
+          <li *ngIf="loggedInUser"><a routerLink="/login" (click)="logout()">Logout</a></li>
         </ul>
       </div>
     </mat-toolbar>
