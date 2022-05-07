@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'fill-form/:questionnaire_id', // questionnaire_id
+    loadChildren: () => import('./pages/questionnaires/fill-form/fill-form.module').then(m => m.FillFormModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'gallery',
     loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule),
     canActivate: [AuthGuard]

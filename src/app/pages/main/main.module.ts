@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 
+import { QuestionnaireListModule } from '../questionnaires/questionnaire-list/questionnaire-list.module';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { MainComponent } from './main.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    QuestionnaireListModule,
   ]
 })
 export class MainModule { }

@@ -1,0 +1,9 @@
+<div *ngIf="'questionnaires'.length == 0">
+    <h1>Your questionnaires will appear here</h1>
+</div>
+<div *ngIf="'questionnaires'.length > 0">
+    <h1>Available questionnaires</h1>
+    <div *ngFor="let item of questionnaries">
+        <app-questionnaire-card [questionnaire]="item"></app-questionnaire-card>
+    </div>
+</div>
