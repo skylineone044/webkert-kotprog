@@ -14,6 +14,16 @@
                 <mat-label for="rePassword">Confirm password: </mat-label>
                 <input matInput type="password" formControlName="rePassword" />
             </mat-form-field>
+            <div formGroupName="name" class="subForm">
+                <mat-form-field>
+                    <mat-label for="firstname">First name: </mat-label>
+                    <input matInput type="text" formControlName="firstname" />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="firstname">Last name: </mat-label>
+                    <input matInput type="text" formControlName="lastname" />
+                </mat-form-field>
+            </div>
             <div>
                 <span class="buttons">
                     <button mat-raised-button color="primary" type="submit">Register</button>

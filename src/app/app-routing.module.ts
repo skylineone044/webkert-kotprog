@@ -10,6 +10,15 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'gallery',
+    loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule)
+  },
+  {
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
   },
