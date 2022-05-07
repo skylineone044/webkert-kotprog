@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "skyline-forms": {
+      "hosting": {
+        "skyline-forms": [
+          "skyline-forms"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "skyline-forms"
+  }
+}
