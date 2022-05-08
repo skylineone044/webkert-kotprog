@@ -7,9 +7,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Questionnaire } from '../../../shared/models/Questionnaire';
-import { Question } from '../../../shared/models/Question';
+import { Question, QuestionC } from '../../../shared/models/Question';
 import { QuestionnaireService } from '../../../shared/services/questionnaire.service';
-import { Observable } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -19,11 +18,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
-  questionnaire: Questionnaire;
-  questions: [Observable<Question | undefined>, FormControl][] = [];
+  public questionnaire: Questionnaire | undefined;
 
-  form_group_ids: Map<string, FormControl>;
-  form_group: FormGroup;
+  public questions: QuestionC[] = [];
+
+  public myFormGroup: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,31 +30,35 @@ export class FillFormComponent implements OnInit {
     private qs: QuestionnaireService
   ) {}
 
+  load_questionnaire(ques: Questionnaire | undefined) {
+    console.log('loading questionnaire: ' + JSON.stringify(ques?.id));
+    console.log('loading questionnaire: ' + JSON.stringify(ques?.title));
+    console.log('loading questionnaire: ' + JSON.stringify(ques?.questions));
+
+    let group: any = {};
+
+    ques?.questions.forEach((input_template) => {
+      // console.log("indputid: " + input_template.id)
+      this.questions.push(new QuestionC(input_template.id, input_template.type, input_template.text, input_template.choices))
+      group[input_template.id] = new FormControl('');
+    });
+
+    console.log('loaded questions: ' + JSON.stringify(this.questions));
+    this.myFormGroup = new FormGroup(group);
+  }
+
   ngOnInit() {
     this.route.queryParamMap.subscribe((param) => {
       this.questionnaire_id = param.get('questionnaire');
-      console.log(this.questionnaire_id);
     });
     console.log('filling out questionnaire: ' + this.questionnaire_id);
-    if (this.questionnaire_id === null) {
-      this.router.navigate(['/not-found']);
-      this.router.navigate(['not-found']);
-    } else {
-      console.log('getting Questionnaire...');
+
+    if (this.questionnaire_id !== null) {
       this.qs.getQuestionnaireById(this.questionnaire_id).subscribe((q) => {
-        if (q !== undefined) {
-          this.questionnaire = q;
-          console.log("fetched questions: " + this.questionnaire.questions)
-          for(var i = 0; i < this.questionnaire.questions.length; i++){
-            console.log("geting question: " + this.questionnaire.questions[i].id)
-            this.questions.push([this.qs.getQuestionById(this.questionnaire.questions[i].id), new FormControl('')])
-          }
-        }
-        for(var i = 0; i < this.questionnaire.questions.length; i++){
-          this.form_group_ids.set(this.questionnaire.questions[i].id, this.questions[i][1]);
-        }
-        this.form_group = new FormGroup(Object.fromEntries(this.form_group_ids));
+        this.load_questionnaire(q);
       });
     }
   }
+
+  onSubmit() {}
 }
