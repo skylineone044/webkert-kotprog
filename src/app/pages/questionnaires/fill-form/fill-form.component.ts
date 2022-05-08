@@ -10,7 +10,7 @@ import { Questionnaire } from '../../../shared/models/Questionnaire';
 import { Question } from '../../../shared/models/Question';
 import { QuestionnaireService } from '../../../shared/services/questionnaire.service';
 import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-fill-form',
@@ -21,6 +21,9 @@ export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
   questionnaire: Questionnaire;
   questions: [Observable<Question | undefined>, FormControl][] = [];
+
+  form_group_ids: Map<string, FormControl>;
+  form_group: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +51,10 @@ export class FillFormComponent implements OnInit {
             this.questions.push([this.qs.getQuestionById(this.questionnaire.questions[i].id), new FormControl('')])
           }
         }
+        for(var i = 0; i < this.questionnaire.questions.length; i++){
+          this.form_group_ids.set(this.questionnaire.questions[i].id, this.questions[i][1]);
+        }
+        this.form_group = new FormGroup(Object.fromEntries(this.form_group_ids));
       });
     }
   }
