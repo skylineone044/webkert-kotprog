@@ -1,6 +1,6 @@
 export interface Question {
   id: string;
-  fajta: string;
+  type: string;
   text: string;
   choices: Array<string>;
 }

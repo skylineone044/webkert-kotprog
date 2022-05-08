@@ -31,6 +31,8 @@ export class FillFormComponent implements OnInit {
   ) {}
 
   load_questionnaire(ques: Questionnaire | undefined) {
+    this.questionnaire = ques;
+    console.log('loading questionnaire: ' + JSON.stringify(ques));
     console.log('loading questionnaire: ' + JSON.stringify(ques?.id));
     console.log('loading questionnaire: ' + JSON.stringify(ques?.title));
     console.log('loading questionnaire: ' + JSON.stringify(ques?.questions));
@@ -38,9 +40,20 @@ export class FillFormComponent implements OnInit {
     let group: any = {};
 
     ques?.questions.forEach((input_template) => {
-      console.log("aaa: " + JSON.stringify(input_template))
-      this.questions.push(input_template)
-      group[input_template.id] = new FormControl('');
+      let questi = this.qs.getQuestionById(input_template.id);
+      if (questi !== undefined) {
+        questi.subscribe(qqq => {
+          if (qqq !== undefined) {
+            console.log("aaa: " + JSON.stringify(qqq))
+            this.questions.push(qqq)
+            group[qqq.id] = new FormControl('');
+          } else {
+            console.log("qqq is undefined")
+          }
+        });
+      } else {
+        console.log("questy is undefined")
+      }
     });
 
     console.log('loaded questions: ' + JSON.stringify(this.questions));

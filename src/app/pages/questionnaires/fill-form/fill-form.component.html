@@ -3,20 +3,28 @@
 
 <div class="content">
   <h1>{{questionnaire?.title}}</h1>
-  <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+  <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()" class="form-content">
 
-    <div *ngFor="let item of questions">
-      question
-      <mat-card>
-        <mat-card-title>{{item.text}}</mat-card-title>
-        <mat-card-content>
-            {{item.id}}
-            {{item.text}}
-            {{item.fajta}}
-            {{item.choices}}
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <mat-card *ngFor="let item of questions">
+      <mat-card-title>{{item.text}}</mat-card-title>
+      <mat-card-content>
+        <mat-form-field *ngIf="item?.type === 'long_text'" class="form-content">
+          <mat-label for="answer">Your answer...</mat-label><input matInput type="text" formControlName="fc" />
+        </mat-form-field>
+
+        <mat-radio-group *ngIf="item?.type === 'multiple_choice'" formControlName="fc" class="form-content">
+          <mat-radio-button *ngFor="let choice of item.choices" [value]="choice">
+            {{choice}}
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field *ngIf="item?.type === 'dropdown'">
+          <mat-select>
+            <mat-option *ngFor="let c of item.choices" [value]="c">{{c}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
 
     <div class="submitbutton">
       <button mat-raised-button color="accent">Send</button>
