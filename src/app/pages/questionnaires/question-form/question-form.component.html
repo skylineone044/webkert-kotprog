@@ -3,10 +3,10 @@
   <mat-card-content>
 
     <mat-form-field *ngIf="question?.type === 'long_text'" class="form-content">
-      <mat-label for="answer">Your answer...</mat-label><input matInput type="text" [formControl]="answer" />
+      <mat-label for="answer">Your answer...</mat-label><input matInput type="text" formControlName="fc" />
     </mat-form-field>
 
-    <mat-radio-group *ngIf="question?.type === 'multiple_choice'" [(ngModel)]="answer" class="form-content">
+    <mat-radio-group *ngIf="question?.type === 'multiple_choice'" formControlName="fc" class="form-content">
       <mat-radio-button *ngFor="let choice of question.choices" [value]="choice">
         {{choice}}
       </mat-radio-button>

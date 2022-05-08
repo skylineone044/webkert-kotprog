@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable } from 'rxjs';
+import { Observable, tap, throwIfEmpty } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
 import { Question } from '../models/Question';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
@@ -15,6 +15,8 @@ export class QuestionnaireService {
 
   db_collection_questionnaires = "Questionnaires";
   db_collection_questions = "Questions";
+
+  chache_questionnaire: Questionnaire | undefined;
 
   constructor(
     private http: HttpClient,
@@ -32,18 +34,5 @@ export class QuestionnaireService {
 
   getQuestionById(id: string): Observable<Question | undefined> {
     return this.afs.collection<Question>(this.db_collection_questions).doc(id).valueChanges();
-  }
-
-  getQuestionsByQuestionnaireId(id: string): Observable<Question | undefined>[] {
-    let questions: Array<Observable<Question | undefined>> = [];
-
-    this.getQuestionnaireById(id).subscribe(questionnaire => {
-      if (questionnaire !== undefined) {
-        for (let question_id of questionnaire?.questions) {
-          questions.push(this.getQuestionById(question_id));
-        }
-      }
-    });
-    return questions;
   }
 }

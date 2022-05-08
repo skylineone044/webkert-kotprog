@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/shared/models/Question';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-question-form',
@@ -10,19 +11,19 @@ import { Question } from 'src/app/shared/models/Question';
 })
 export class QuestionFormComponent implements OnInit {
 
-  @Input() questionobs: Observable<Question | undefined>;
+  @Input() questionobs: Question;
   question: Question;
 
-  answer = new FormControl('');
+  @Input() fc: FormControl;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.questionobs.subscribe(q => {
-      if (q !== undefined) {
-      this.question = q;
-      }
-    });
+  //   this.questionobs.subscribe(q => {
+  //     if (q !== undefined) {
+  //     this.question = q;
+  //     }
+  //   });
+  // }
   }
-
 }

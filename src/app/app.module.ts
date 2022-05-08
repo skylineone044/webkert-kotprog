@@ -22,6 +22,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { QuestionnaireListModule } from './pages/questionnaires/questionnaire-list/questionnaire-list.module';
 import { FillFormModule } from './pages/questionnaires/fill-form/fill-form.module';
@@ -44,6 +46,7 @@ import { FillFormModule } from './pages/questionnaires/fill-form/fill-form.modul
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
