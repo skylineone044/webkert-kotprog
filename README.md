@@ -1,5 +1,6 @@
 # SkylineForms
-Ha a következő hiba lép fel:
+
+## Ha a következő hiba lép fel:
 
 ```
 Error: node_modules/@firebase/auth/dist/auth-public.d.ts:3137:22 - error TS2304: Cannot find name 'PhoneOrOauthTokenResponse'.
@@ -22,7 +23,15 @@ Error: node_modules/@firebase/auth/dist/auth-public.d.ts:3429:11 - error TS2304:
 ✖ Failed to compile.
 ```
 
-Akor a `node_modules/@firebase/auth/dist/auth-public.d.ts` filet cseréld ki a `hotfix/auth-public.d.ts` filera
+Akor a `node_modules/@firebase/auth/dist/auth-public.d.ts` filet cseréld ki a `./hotfix/auth-public.d.ts` filera
+
+## Ha futtatni szeretnéd,
+akkor az én adatbázisomhoz való csatlakozáshoz szügséges fileok a `./firebase_creds/` mappában megtalálod.
+
+## Lehet
+regisztrálni, bejelentkezni, formot kitölteni, Kijelentkezni
+
+A form adatokat nem lehet az alkalmazásból megtekinteni
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
 
