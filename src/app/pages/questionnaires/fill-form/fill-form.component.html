@@ -1,9 +1,6 @@
 <ng-content></ng-content>
 
-<p>Fill Form works!</p>
 <h1>{{questionnaire?.title}}</h1>
-<p>questionnaire id: {{questionnaire_id}} length: {{questions?.length}}</p>
 <div *ngFor="let item of questions">
-    bean
-    <p>{{item?.text}}</p>
+    <app-question-form [questionobs]="item"></app-question-form>
 </div>

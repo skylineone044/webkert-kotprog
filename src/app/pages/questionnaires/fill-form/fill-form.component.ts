@@ -13,8 +13,7 @@ import { Observable } from 'rxjs';
 export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
   questionnaire: Questionnaire;
-  questions_obs: Observable<Question | undefined>[];
-  questions: Question[];
+  questions: Observable<Question | undefined>[];
 
 
   constructor(private route: ActivatedRoute, private router: Router, private qs: QuestionnaireService) {
@@ -36,14 +35,7 @@ export class FillFormComponent implements OnInit {
             this.questionnaire = q
           }
         });
-        this.questions_obs = this.qs.getQuestionsByQuestionnaireId(this.questionnaire_id)
-        for (let qobs of this.questions_obs) {
-          qobs.subscribe(question => {
-            if (question !== undefined) {
-              this.questions.push(question);
-            }
-          });
-        }
+        this.questions = this.qs.getQuestionsByQuestionnaireId(this.questionnaire_id)
     }
   }
 
