@@ -11,7 +11,7 @@ import { EventEmitter } from 'stream';
 })
 export class QuestionFormComponent implements OnInit {
 
-  @Input() questionobs: Question;
+  @Input() questionobs: Observable<Question | undefined>;
   question: Question;
 
   @Input() fc: FormControl;
@@ -19,11 +19,12 @@ export class QuestionFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  //   this.questionobs.subscribe(q => {
-  //     if (q !== undefined) {
-  //     this.question = q;
-  //     }
-  //   });
-  // }
+    this.questionobs.subscribe(q => {
+      if (q !== undefined) {
+        this.question = q;
+      } else {
+        console.log("quesiton is undefined")
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
 <mat-card>
   <mat-card-title>{{question?.text}}</mat-card-title>
   <mat-card-content>
+      question: {{question}}
 
     <mat-form-field *ngIf="question?.type === 'long_text'" class="form-content">
       <mat-label for="answer">Your answer...</mat-label><input matInput type="text" formControlName="fc" />

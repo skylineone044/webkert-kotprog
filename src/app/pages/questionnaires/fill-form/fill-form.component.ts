@@ -20,7 +20,7 @@ import { FormControl } from '@angular/forms';
 export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
   questionnaire: Questionnaire;
-  questions: [Question, FormControl][] = [];
+  questions: [Observable<Question | undefined>, FormControl][] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +44,8 @@ export class FillFormComponent implements OnInit {
           this.questionnaire = q;
           console.log("fetched questions: " + this.questionnaire.questions)
           for(var i = 0; i < this.questionnaire.questions.length; i++){
-            this.questions.push([this.questionnaire.questions[i], new FormControl('')])
+            console.log("geting question: " + this.questionnaire.questions[i].id)
+            this.questions.push([this.qs.getQuestionById(this.questionnaire.questions[i].id), new FormControl('')])
           }
         }
       });
