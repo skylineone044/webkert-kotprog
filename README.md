@@ -35,6 +35,89 @@ A form adatokat nem lehet az alkalmazásból megtekinteni
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
 
+## pontozás
+
+### Adatmodell definiálása (legalább 4 TypeScript interfész vagy class formájában (ugyanennyi kollekció))
+
+`./src/app/shared/models/` mappában
+
+### Legalább 2 különböző attribútum direktíva használata
+
+nincs
+
+### Legalább 2 különböző strukturális direktíva használata
+
+ngFor: `./src/app/pages/questionnaires/fill-form/fill-form.component.html:12`
+
+ngIf: `./src/app/pages/questionnaires/fill-form/fill-form.component.html:15`
+
+### Adatátadás szülő és gyermek komponensek között (legalább 1 @Input és 1 @Output)
+
+Input: `./src/app/shared/menu/menu.component.ts:10`
+
+Output: `./src/app/shared/menu/menu.component.ts:12`
+
+
+### Legalább 10 különböző Material elem helyes használata.
+
+`./src/app/pages/questionnaires/fill-form/fill-form.component.html`
+
+`./src/app/pages/login/login.component.html`
+
+`./src/app/shared/menu/menu.component.html`
+
+### Adatbevitel Angular form-ok segítségével megvalósítva (legalább 2)
+
+`./src/app/pages/login/login.component.html`
+
+`./src/app/pages/signup/signup.component.html`
+
+`./src/app/pages/questionnaires/fill-form/fill-form.component.html`
+
+### Legalább 1 saját Pipe osztály írása és használata
+
+`./src/app/shared/pipes/date-format.pipe.ts`
+
+
+### Legalább 2 különböző Lifecycle Hook használata a teljes projektben (értelmes tartalommal, nem üresen)
+
+csak ngOnInit van
+`./src/app/pages/questionnaires/fill-form/fill-form.component.html`
+
+### CRUD műveletek mindegyike megvalósult (Promise, Observable használattal)
+
+`./src/app/pages/questionnaires/fill-form/fill-form.component.ts`
+
+`./src/app/shared/services/questionnaire.service.ts`
+
+`./src/app/shared/services/user.service.ts`
+
+### CRUD műveletek service-ekbe vannak kiszervezve és megfelelő módon injektálva lettek
+
+`./src/app/shared/services/questionnaire.service.ts`
+
+`./src/app/shared/services/user.service.ts`
+
+### Firestore adatbázis használata az adatokhoz (integráció, környezeti változók használata helyes legyen)
+
+`./src/app/app.module.ts`
+
+`./src/app/shared/services/questionnaire.service.ts`
+
+`./src/app/shared/services/user.service.ts`
+
+### Legalább 2 komplex Firestore lekérdezés megvalósítása (ide tartoznak: where feltétel, rendezés, léptetés, limitálás)
+
+nincs
+
+### Legalább 4 különböző route a különböző oldalak eléréséhez
+
+`./src/app/app-routing.module.ts`: main, fill-form, contact, not-found, login, signup
+
+### Legalább 2 route levédése azonosítással (AuthGuard) (ahol ennek értelme van, pl.: egy fórum témakör megtekinthető bárki számára, de a regisztrált felhasználó adatai nem)
+
+`./src/app/app-routing.module.ts`: main, fill-form
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
