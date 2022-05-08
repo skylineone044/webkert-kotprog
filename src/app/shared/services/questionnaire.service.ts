@@ -5,6 +5,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable, tap, throwIfEmpty } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
 import { Question } from '../models/Question';
+import { Answer, QuestionnaireAnswer } from '../models/Answer';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { strictEqual } from 'assert';
 
@@ -15,6 +16,7 @@ export class QuestionnaireService {
 
   db_collection_questionnaires = "Questionnaires";
   db_collection_questions = "Questions";
+  db_collection_answers = "Answers";
 
   chache_questionnaire: Questionnaire | undefined;
 
@@ -34,5 +36,15 @@ export class QuestionnaireService {
 
   getQuestionById(id: string): Observable<Question | undefined> {
     return this.afs.collection<Question>(this.db_collection_questions).doc(id).valueChanges();
+  }
+
+  saveAnswers(ans: QuestionnaireAnswer) {
+    let qav = ans.getValue()
+    console.log(qav);
+    return this.afs.collection(this.db_collection_answers).doc(ans.id).set(qav);
+  }
+
+  getNewId() {
+    return this.afs.createId();
   }
 }
