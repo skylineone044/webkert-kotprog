@@ -73,5 +73,8 @@ export class FillFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log("submitting form...");
+    console.log(this.myFormGroup);
+  }
 }

@@ -9,17 +9,17 @@
       <mat-card-title>{{item.text}}</mat-card-title>
       <mat-card-content>
         <mat-form-field *ngIf="item?.type === 'long_text'" class="form-content">
-          <mat-label for="answer">Your answer...</mat-label><input matInput type="text" formControlName="fc" />
+          <mat-label for="answer">Your answer...</mat-label><input matInput type="text" formControlName="{{item.id}}"/>
         </mat-form-field>
 
-        <mat-radio-group *ngIf="item?.type === 'multiple_choice'" formControlName="fc" class="form-content">
+        <mat-radio-group *ngIf="item?.type === 'multiple_choice'" formControlName="{{item.id}}" class="form-content">
           <mat-radio-button *ngFor="let choice of item.choices" [value]="choice">
             {{choice}}
           </mat-radio-button>
         </mat-radio-group>
 
         <mat-form-field *ngIf="item?.type === 'dropdown'">
-          <mat-select>
+          <mat-select formControlName="{{item.id}}">
             <mat-option *ngFor="let c of item.choices" [value]="c">{{c}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -27,7 +27,7 @@
     </mat-card>
 
     <div class="submitbutton">
-      <button mat-raised-button color="accent">Send</button>
+      <button mat-raised-button color="accent" type="submit">Send</button>
     </div>
 
   </form>
