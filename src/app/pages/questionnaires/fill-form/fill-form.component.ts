@@ -9,13 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => console.log(params));
+   }
 
   ngOnInit(): void {
-    this.questionnaire_id = this.route.snapshot.paramMap.get('questionnaire');
+    // this.questionnaire_id = this.route.snapshot.queryParamMap.get('questionnaire');
+    this.route.params.subscribe(params => {this.questionnaire_id = params['questionnaire']})
     console.log("filling out questionnaire: " + this.questionnaire_id)
     if (this.questionnaire_id === null) {
-      this.router.navigate(['/not-found']);
+      this.router.navigate(['not-found']);
     } 
   }
 

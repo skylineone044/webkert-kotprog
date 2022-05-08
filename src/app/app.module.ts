@@ -24,6 +24,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 
 import { QuestionnaireListModule } from './pages/questionnaires/questionnaire-list/questionnaire-list.module';
+import { FillFormModule } from './pages/questionnaires/fill-form/fill-form.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { QuestionnaireListModule } from './pages/questionnaires/questionnaire-li
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     QuestionnaireListModule,
+    FillFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
