@@ -27,15 +27,15 @@ export class QuestionnaireService {
   ) { }
 
   getQuestionnaireList(): Observable<Questionnaire[]> {
-    return this.afs.collection<Questionnaire>(this.db_collection_questionnaires).valueChanges();
+    return this.afs.collection<Questionnaire>(this.db_collection_questionnaires, ref => ref.orderBy('id', 'asc')).valueChanges();
   }
 
   getQuestionnaireById(id: string): Observable<Questionnaire | undefined> {
-    return this.afs.collection<Questionnaire>(this.db_collection_questionnaires).doc(id).valueChanges();
+    return this.afs.collection<Questionnaire>(this.db_collection_questionnaires, ref => ref.orderBy('id', 'asc')).doc(id).valueChanges();
   }
 
   getQuestionById(id: string): Observable<Question | undefined> {
-    return this.afs.collection<Question>(this.db_collection_questions).doc(id).valueChanges();
+    return this.afs.collection<Question>(this.db_collection_questions, ref => ref.orderBy('id', 'asc')).doc(id).valueChanges();
   }
 
   saveAnswers(ans: QuestionnaireAnswer) {

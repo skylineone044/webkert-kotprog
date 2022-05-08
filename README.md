@@ -108,7 +108,7 @@ csak ngOnInit van
 
 ### Legalább 2 komplex Firestore lekérdezés megvalósítása (ide tartoznak: where feltétel, rendezés, léptetés, limitálás)
 
-nincs
+`./src/app/shared/services/questionnaire.service.ts`
 
 ### Legalább 4 különböző route a különböző oldalak eléréséhez
 
