@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/shared/models/Question';
-
-import {MatCard} from '@angular/material/card'
 
 @Component({
   selector: 'app-question-form',
@@ -14,6 +13,7 @@ export class QuestionFormComponent implements OnInit {
   @Input() questionobs: Observable<Question | undefined>;
   question: Question;
 
+  answer = new FormControl('');
 
   constructor() { }
 
