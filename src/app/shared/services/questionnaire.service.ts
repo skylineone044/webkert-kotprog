@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
 import { Question } from '../models/Question';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { strictEqual } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,6 @@ export class QuestionnaireService {
 
   db_collection_questionnaires = "Questionnaires";
   db_collection_questions = "Questions";
-
-  questionnaire: Questionnaire | undefined= undefined;
-  questions: Array<Observable<Question | undefined>> = [];
 
   constructor(
     private http: HttpClient,
@@ -36,14 +34,16 @@ export class QuestionnaireService {
     return this.afs.collection<Question>(this.db_collection_questions).doc(id).valueChanges();
   }
 
-  getQuestionsByQuestionnaireId(id: string) {
-    this.getQuestionnaireById(id).subscribe(val =>  this.questionnaire = val);
-    if (this.questionnaire !== undefined) {
-      for (let question_id of this.questionnaire?.questions) {
-        this.questions.push(this.getQuestionById(question_id));
-      }
+  getQuestionsByQuestionnaireId(id: string): Observable<Question | undefined>[] {
+    let questions: Array<Observable<Question | undefined>> = [];
 
-    }
-    return this.questions;
+    this.getQuestionnaireById(id).subscribe(questionnaire => {
+      if (questionnaire !== undefined) {
+        for (let question_id of questionnaire?.questions) {
+          questions.push(this.getQuestionById(question_id));
+        }
+      }
+    });
+    return questions;
   }
 }
