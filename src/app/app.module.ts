@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -47,6 +48,7 @@ import { FillFormModule } from './pages/questionnaires/fill-form/fill-form.modul
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),

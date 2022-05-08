@@ -24,6 +24,8 @@ export class FillFormComponent implements OnInit {
 
   public myFormGroup: FormGroup;
 
+  loading: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,10 +34,10 @@ export class FillFormComponent implements OnInit {
 
   load_questionnaire(ques: Questionnaire | undefined) {
     this.questionnaire = ques;
-    console.log('loading questionnaire: ' + JSON.stringify(ques));
-    console.log('loading questionnaire: ' + JSON.stringify(ques?.id));
-    console.log('loading questionnaire: ' + JSON.stringify(ques?.title));
-    console.log('loading questionnaire: ' + JSON.stringify(ques?.questions));
+    // console.log('loading questionnaire: ' + JSON.stringify(ques));
+    // console.log('loading questionnaire: ' + JSON.stringify(ques?.id));
+    // console.log('loading questionnaire: ' + JSON.stringify(ques?.title));
+    // console.log('loading questionnaire: ' + JSON.stringify(ques?.questions));
 
     let group: any = {};
 
@@ -44,7 +46,7 @@ export class FillFormComponent implements OnInit {
       if (questi !== undefined) {
         questi.subscribe(qqq => {
           if (qqq !== undefined) {
-            console.log("aaa: " + JSON.stringify(qqq))
+            // console.log("aaa: " + JSON.stringify(qqq))
             this.questions.push(qqq)
             group[qqq.id] = new FormControl('');
           } else {
@@ -56,8 +58,9 @@ export class FillFormComponent implements OnInit {
       }
     });
 
-    console.log('loaded questions: ' + JSON.stringify(this.questions));
+    // console.log('loaded questions: ' + JSON.stringify(this.questions));
     this.myFormGroup = new FormGroup(group);
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -75,6 +78,8 @@ export class FillFormComponent implements OnInit {
 
   onSubmit() {
     console.log("submitting form...");
-    console.log(this.myFormGroup);
+    for (let q of this.questions) {
+      console.log(this.myFormGroup.get(q.id)?.value)
+    }
   }
 }
