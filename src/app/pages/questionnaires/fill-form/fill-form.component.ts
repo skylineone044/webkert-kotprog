@@ -100,5 +100,6 @@ export class FillFormComponent implements OnInit {
       console.log(qa);
       this.qs.saveAnswers(qa);
     }
+    this.router.navigateByUrl('/main');
   }
 }
