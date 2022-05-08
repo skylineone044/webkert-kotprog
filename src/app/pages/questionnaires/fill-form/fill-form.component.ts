@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Questionnaire } from '../../../shared/models/Questionnaire';
-import { Question, QuestionC } from '../../../shared/models/Question';
+import { Question,  } from '../../../shared/models/Question';
 import { QuestionnaireService } from '../../../shared/services/questionnaire.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -20,7 +20,7 @@ export class FillFormComponent implements OnInit {
   questionnaire_id: string | null;
   public questionnaire: Questionnaire | undefined;
 
-  public questions: QuestionC[] = [];
+  public questions: Question[] = [];
 
   public myFormGroup: FormGroup;
 
@@ -38,8 +38,8 @@ export class FillFormComponent implements OnInit {
     let group: any = {};
 
     ques?.questions.forEach((input_template) => {
-      // console.log("indputid: " + input_template.id)
-      this.questions.push(new QuestionC(input_template.id, input_template.type, input_template.text, input_template.choices))
+      console.log("aaa: " + JSON.stringify(input_template))
+      this.questions.push(input_template)
       group[input_template.id] = new FormControl('');
     });
 
